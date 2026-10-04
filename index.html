@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game Night, Together: A Co-op Game Night Guide</title>
+<meta name="description" content="A co-op game night guide: pick a game, set up the night, split up team roles, and recover when things go wrong.">
+<style>
+  :root {
+    --bg: #12110F;
+    --bg-cool: #0E1218;
+    --card: #1C1916;
+    --pill: #26211C;
+    --slate: #1B2430;
+    --ember: #E8833A;
+    --amber: #F2B666;
+    --cream: #F3E9DC;
+    --ash: #A39E96;
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  a { color: var(--amber); text-underline-offset: 3px; }
+  a:hover { text-decoration: underline; }
+  a:not(.btn) { text-decoration: none; }
+  a:not(.btn):hover { text-decoration: underline; }
+
+  a:focus-visible,
+  .btn:focus-visible {
+    outline: 3px solid var(--amber);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+    background:
+      radial-gradient(ellipse 60% 55% at 50% 30%, rgba(232, 131, 58, 0.20) 0%, rgba(232, 131, 58, 0.07) 45%, rgba(232, 131, 58, 0) 75%),
+      radial-gradient(ellipse 120% 100% at 50% 40%, rgba(14, 18, 24, 0) 45%, rgba(14, 18, 24, 0.95) 100%),
+      var(--bg);
+  }
+
+  .hero .wrap { position: relative; text-align: left; }
+
+  .eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    letter-spacing: 0.05em;
+    word-spacing: -0.1em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--cream);
+    filter: url(#worn);
+  }
+
+  .rule {
+    width: 120px;
+    height: 1px;
+    margin: 1.25rem 0;
+    background: var(--ember);
+  }
+
+  .tagline {
+    margin: 0 0 1.75rem;
+    max-width: 34rem;
+    color: var(--ash);
+    font-size: 1.125rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    background: var(--ember);
+    color: var(--bg);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+  .btn:hover { background: var(--amber); text-decoration: none; }
+
+  /* ---------- Sections ---------- */
+  section {
+    border-top: 1px solid var(--slate);
+    padding: 3rem 0;
+  }
+
+  h2 {
+    margin: 0 0 0.75rem;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  h3 {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 1.25;
+  }
+
+  .intro {
+    margin: 0 0 1.75rem;
+    max-width: 44rem;
+    color: var(--ash);
+  }
+
+  /* ---------- Cards ---------- */
+  .grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--slate);
+    border-radius: 8px;
+    padding: 1.25rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card:hover {
+    border-color: var(--ember);
+    box-shadow: 0 0 18px rgba(232, 131, 58, 0.18);
+  }
+
+  .game h3 { font-size: 1.4rem; margin-bottom: 0.6rem; }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0 0 0.9rem;
+    padding: 0;
+    list-style: none;
+  }
+  .tags li {
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    background: var(--pill);
+    color: var(--amber);
+    font-size: 0.8125rem;
+  }
+
+  .good { margin: 0 0 0.6rem; color: var(--cream); }
+  .details { margin: 0 0 0.75rem; color: var(--ash); font-size: 0.975rem; }
+  .note { margin: 0 0 0.75rem; color: var(--ash); font-size: 0.9rem; }
+  .note strong { color: var(--amber); font-weight: 600; }
+  .card .link { margin: 0.9rem 0 0; font-size: 0.975rem; }
+
+  .footnote {
+    margin: 1.5rem 0 0;
+    color: var(--ash);
+    font-size: 0.9rem;
+  }
+
+  /* ---------- Checklist ---------- */
+  .steps { counter-reset: step; max-width: 44rem; }
+
+  .steps h3 {
+    margin: 1.5rem 0 0.25rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-family: var(--sans);
+    font-weight: 600;
+    color: var(--amber);
+  }
+  .steps h3:first-child { margin-top: 0; }
+
+  .steps ol { margin: 0; padding: 0; list-style: none; }
+
+  .steps li {
+    counter-increment: step;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--slate);
+  }
+  .steps li::before {
+    content: counter(step);
+    flex: none;
+    min-width: 1.5rem;
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--ember);
+  }
+
+  /* ---------- Roles ---------- */
+  .roles { margin-bottom: 2rem; }
+  .role h3 { font-size: 1.25rem; color: var(--amber); margin-bottom: 0.35rem; }
+  .role p { margin: 0; color: var(--ash); font-size: 0.975rem; }
+
+  .subhead {
+    margin: 0 0 0.5rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amber);
+    font-weight: 600;
+  }
+
+  .bullets { margin: 0; padding: 0; list-style: none; max-width: 44rem; }
+  .bullets li {
+    position: relative;
+    padding: 0.5rem 0 0.5rem 1.4rem;
+  }
+  .bullets li::before {
+    content: "";
+    position: absolute;
+    left: 0.15rem;
+    top: 1.05rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ember);
+  }
+  .bullets strong { color: var(--amber); font-weight: 600; }
+
+  /* ---------- Closing + footer ---------- */
+  .closing {
+    text-align: center;
+    background:
+      radial-gradient(ellipse 70% 80% at 50% 0%, rgba(232, 131, 58, 0.10) 0%, rgba(232, 131, 58, 0) 70%),
+      var(--bg-cool);
+    padding: 4rem 0 2.5rem;
+  }
+  .closing h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); letter-spacing: 0.06em; margin-bottom: 1.5rem; }
+  .closing .fine { margin: 2.5rem 0 0.25rem; color: var(--ash); font-size: 0.875rem; }
+  .closing .fine + .fine { margin-top: 0.25rem; }
+
+  /* ---------- Wider screens ---------- */
+  @media (min-width: 700px) {
+    section { padding: 5rem 0; }
+    .grid.games { grid-template-columns: repeat(2, 1fr); }
+    .grid.roles { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .wrap { padding-left: 2rem; padding-right: 2rem; }
+    .hero .wrap { text-align: center; }
+    .hero .rule { margin-left: auto; margin-right: auto; }
+    .hero .tagline { margin-left: auto; margin-right: auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .card, .btn { transition: none; }
+  }
+</style>
+</head>
+<body id="top">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="worn" x="-5%" y="-10%" width="110%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="2" result="warp"/>
+    <feDisplacementMap in="SourceGraphic" in2="warp" scale="3" result="rough"/>
+    <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" seed="7" result="noise"/>
+    <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -20 12.5" result="mask"/>
+    <feComposite in="rough" in2="mask" operator="in"/>
+  </filter>
+</svg>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">A co-op guide</p>
+    <h1>Game Night, Together</h1>
+    <div class="rule" aria-hidden="true"></div>
+    <p class="tagline">Pick a game, set up the night, and keep the whole team in the fight.</p>
+    <a class="btn" href="#games">Pick a game</a>
+  </div>
+</header>
+
+<main>
+
+  <section id="games" aria-labelledby="games-title">
+    <div class="wrap">
+      <h2 id="games-title">Pick a Game Together</h2>
+      <p class="intro">The best co-op games make the whole group a team against the world. These four survival picks cover small crews and big groups, so there's a good starting point whatever your group size.</p>
+
+      <div class="grid games">
+
+        <article class="card game">
+          <h3>RuneScape: Dragonwilds</h3>
+          <ul class="tags">
+            <li>1–4 players</li>
+            <li>Fantasy</li>
+          </ul>
+          <p class="good">Groups who like building a base and working up to boss fights together.</p>
+          <p class="details">A co-op survival crafting RPG set on the continent of Ashenfall, where players gather, build, and skill up. It can be played solo or with friends.</p>
+          <p class="note">Left Early Access and launched in full on September 15, 2026, on PC (Steam and Epic Games Store), PlayStation 5, and Xbox Series X|S. Crossplay is supported, so friends on different platforms can still team up.</p>
+          <p class="link"><a href="https://dragonwilds.runescape.com" target="_blank" rel="noopener noreferrer">Dragonwilds official site</a></p>
+        </article>
+
+        <article class="card game">
+          <h3>Sons of the Forest</h3>
+          <ul class="tags">
+            <li>Up to 8 players</li>
+            <li>Survival horror</li>
+          </ul>
+          <p class="good">Bigger groups who want a tense island adventure together.</p>
+          <p class="details">A survival horror game set on a remote island, where players craft, build, and struggle to survive, alone or with friends. Co-op lets players share items and work together to build defenses. It supports the largest group of the four. It left Early Access with its full release on February 22, 2024. It is PC only, on Steam, so everyone needs a PC copy.</p>
+          <p class="note"><strong>Content note:</strong> Rated mature by its developer: intense violence, blood and gore, horror themes, and occasional nudity. Worth a quick check with your group.</p>
+          <p class="link"><a href="https://store.steampowered.com/app/1326470/Sons_Of_The_Forest/" target="_blank" rel="noopener noreferrer">Sons of the Forest on Steam</a></p>
+        </article>
+
+        <article class="card game">
+          <h3>Green Hell</h3>
+          <ul class="tags">
+            <li>1–4 players</li>
+            <li>Jungle survival</li>
+          </ul>
+          <p class="good">Small crews who want to share the work of staying alive in the Amazon rainforest.</p>
+          <p class="details">An open-world survival simulation set in the Amazon jungle, where players hunt for food, tend to wounds, keep their mental health up, and build shelters, solo or with friends. Co-op was added in a free update, and friends can be invited through Steam.</p>
+          <p class="note"><strong>Content note:</strong> The developer describes mild violence, disturbing illness symptoms, and hallucination effects from certain plants and mushrooms.</p>
+          <p class="link"><a href="https://store.steampowered.com/app/815370/Green_Hell/" target="_blank" rel="noopener noreferrer">Green Hell on Steam</a></p>
+        </article>
+
+        <article class="card game">
+          <h3>Don't Starve Together</h3>
+          <ul class="tags">
+            <li>1–4 players</li>
+            <li>Dark, quirky survival</li>
+          </ul>
+          <p class="good">Groups who like learning a game's systems together, like seasons and bosses.</p>
+          <p class="details">The standalone co-op version of Don't Starve, where each player picks a character with different traits and the group survives together on a changing island.</p>
+          <p class="link"><a href="https://store.steampowered.com/app/322330/Dont_Starve_Together/" target="_blank" rel="noopener noreferrer">Don't Starve Together on Steam</a></p>
+        </article>
+
+      </div>
+
+      <p class="footnote">Player counts and platforms were checked on October 4, 2026. Check each game's official store page for the latest details before you buy.</p>
+    </div>
+  </section>
+
+  <section id="setup" aria-labelledby="setup-title">
+    <div class="wrap">
+      <h2 id="setup-title">Set Up the Night</h2>
+      <p class="intro">A smooth night starts before anyone launches the game.</p>
+
+      <div class="steps">
+        <h3>Before</h3>
+        <ol role="list">
+          <li>Pick a night and let the group vote on the game.</li>
+          <li>Make sure everyone has the game installed and working ahead of time.</li>
+          <li>Decide who hosts and how you'll talk (voice chat or text), and test it.</li>
+        </ol>
+
+        <h3>During</h3>
+        <ol role="list">
+          <li>Agree on one goal for the session, such as "build a shelter" or "reach the next area."</li>
+          <li>Split quick jobs so everyone has something to do.</li>
+          <li>Pick a regroup point and time, so no one drifts off alone for too long.</li>
+        </ol>
+
+        <h3>After</h3>
+        <ol role="list">
+          <li>Check in: what was fun, what was frustrating?</li>
+          <li>Decide who hosts and when you'll play next.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="roles" aria-labelledby="roles-title">
+    <div class="wrap">
+      <h2 id="roles-title">Team Roles and Teamwork</h2>
+      <p class="intro">Co-op works best when everyone has a job that matters. Roles are informal and can change from night to night.</p>
+
+      <div class="grid roles">
+        <article class="card role">
+          <h3>Gatherer</h3>
+          <p>Collects the resources the team needs, like food, wood, and materials.</p>
+        </article>
+        <article class="card role">
+          <h3>Builder</h3>
+          <p>Turns those resources into shelter, tools, and a home base.</p>
+        </article>
+        <article class="card role">
+          <h3>Scout</h3>
+          <p>Explores ahead, finds what's nearby, and warns the group about danger.</p>
+        </article>
+        <article class="card role">
+          <h3>Support</h3>
+          <p>Keeps people alive and supplied, and covers whatever the team needs most.</p>
+        </article>
+      </div>
+
+      <p class="subhead">Tips for mixed skill levels</p>
+      <ul class="bullets">
+        <li>Give newer players a real job instead of just following along.</li>
+        <li>Let experienced players explain, not take over.</li>
+        <li>Switch roles now and then so everyone learns a bit of everything.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="trouble" aria-labelledby="trouble-title">
+    <div class="wrap">
+      <h2 id="trouble-title">When Things Go Wrong</h2>
+      <p class="intro">Every group has a bad night. The team solves it, not one person.</p>
+
+      <ul class="bullets">
+        <li><strong>A wipe:</strong> Take a moment to laugh, then regroup. Ask "what can we try differently?" instead of "whose fault was that?"</li>
+        <li><strong>Lag or connection trouble:</strong> Check with the host first, then restart the session if needed. Take a short break rather than pushing through frustration.</li>
+        <li><strong>A teammate falls behind or gets lost:</strong> Pause, regroup at your meeting point, and help them catch up.</li>
+        <li><strong>Someone's not having fun:</strong> Ask, and change the plan. The goal is a night everyone wants to repeat.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="closing">
+  <div class="wrap">
+    <h2>Pick a Night. Pick a Game.</h2>
+    <a class="btn" href="#top">Gather Your Team</a>
+    <p class="fine">A co-op game night guide.</p>
+    <p class="fine">Not affiliated with any game or publisher. Game names belong to their owners.</p>
+    <p class="fine">Player counts and platforms checked October 4, 2026.</p>
+  </div>
+</footer>
+
+</body>
+</html>
